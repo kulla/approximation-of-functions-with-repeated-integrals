@@ -1,0 +1,17 @@
+# Jupyter environment
+jupyter
+
+# OpenAI and Langchain
+jupyter-ai
+langchain-openai
+
+# Data manipulation and analysis
+pandas
+numpy
+
+# Plotting and visualization
+matplotlib
+
+# Scientific computing
+scipy
+sympy
