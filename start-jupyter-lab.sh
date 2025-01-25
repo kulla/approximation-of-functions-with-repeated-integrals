@@ -1,3 +1,3 @@
 #!/bin/sh
 
-jupyter --notebook-dir=notebooks lab
+jupyter lab --notebook-dir=notebooks
