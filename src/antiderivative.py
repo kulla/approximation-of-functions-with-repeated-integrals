@@ -26,3 +26,10 @@ def repeated_antiderivative(n, f, a, b, x=x):
         result = antiderivative(result, a, b if i == n else x, x=x)
 
     return result
+
+
+def antiderivative_integral(n, f, a, b):
+    """
+    Use the formula of Cauchy's repeated integral to calculate the antiderivative of $f$ from $a$ to $b$.
+    """
+    return sp.integrate((b - x) ** n / sp.factorial(n) * f, (x, a, b))

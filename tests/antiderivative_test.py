@@ -2,7 +2,11 @@ import unittest
 
 import sympy as sp
 
-from src.antiderivative import antiderivative, repeated_antiderivative
+from src.antiderivative import (
+    antiderivative,
+    repeated_antiderivative,
+    antiderivative_integral,
+)
 
 
 class TestAntidervative(unittest.TestCase):
@@ -25,6 +29,34 @@ class TestRepeatedAntiderivative(unittest.TestCase):
         self.assertEqual(
             repeated_antiderivative(0, sp.exp(x), a, b), antiderivative(sp.exp(x), a, b)
         )
+
+    def test_higher_values_for_n(self):
+        x, a, b = sp.symbols("x a b")
+
+        self.assertTrue(
+            repeated_antiderivative(1, x, a, b).equals(
+                b**3 / 6 - a**3 / 6 - a**2 / 2 * (b - a)
+            )
+        )
+        self.assertTrue(
+            repeated_antiderivative(1, sp.exp(x), a, b).equals(
+                sp.exp(b) + sp.exp(a) * (a - b - 1)
+            )
+        )
+        self.assertEqual(repeated_antiderivative(2, x, 0, b), b**4 / 24)
+
+
+class TestAntiderivativeIntegral(unittest.TestCase):
+    def test_returns_repeated_antidervative(self):
+        x, a, b = sp.symbols("x a b")
+
+        for f in [x, sp.sin(x), sp.exp(x)]:
+            for n in range(5):
+                self.assertTrue(
+                    antiderivative_integral(n, f, a, b).equals(
+                        repeated_antiderivative(n, f, a, b)
+                    )
+                )
 
 
 if __name__ == "__main__":
