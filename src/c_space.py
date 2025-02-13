@@ -17,7 +17,7 @@ def inner_product(f, g, a=a, b=b, x=x):
     return sp.integrate(f * g, (x, a, b))
 
 
-def integral_linear_form(f, a=a, b=b, x=x):
+def integral_form(f, a=a, b=b, x=x):
     """
     Create a linear form based on the inner product with a fixed function f.
     """
