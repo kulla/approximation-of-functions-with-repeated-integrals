@@ -23,4 +23,4 @@ sed -i "s/NOTEBOOK_TITLE/$NOTEBOOK_TITLE/g" "$NOTEBOOK_PATH"
 sed -i "s/YEAR/$YEAR/g" "$NOTEBOOK_PATH"
 
 # Open the jupyter notebook
-jupyter lab --notebook-dir="$NOTEBOOK_DIR" "$NOTEBOOK_PATH"
+./start-jupyter-lab.sh "$NOTEBOOK_PATH"
