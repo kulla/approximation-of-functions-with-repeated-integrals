@@ -1,8 +1,8 @@
 #!/bin/sh
 
-SCRIPT_DIR=$(dirname "$0")
+SCRIPT_DIR=$(dirname $(readlink -e "$0"))
 NOTEBOOKS_DIR="$SCRIPT_DIR/notebooks"
 
 mkdir -p "$NOTEBOOKS_DIR"
 
-PYTHONPATH=$PYTHONPATH:$SCRIPT_DIR jupyter lab "--notebook-dir=$NOTEBOOKS_DIR" "$@"
+PYTHONPATH="${SCRIPT_DIR}:${PYTHONPATH}" jupyter lab "--notebook-dir=$NOTEBOOKS_DIR" "$@"
