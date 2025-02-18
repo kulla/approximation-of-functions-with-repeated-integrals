@@ -17,11 +17,11 @@ class TestMatrixOf(unittest.TestCase):
         x, n = sp.symbols("x n")
 
         self.assertEqual(
-            matrix_of(derivative_forms(2), vectors(x**n, 2)),
+            matrix_of(derivative_forms(1), vectors(x**n, 1)),
             sp.Matrix([[1, 0], [0, 1]]),
         )
         self.assertEqual(
-            matrix_of(derivative_forms(4), vectors(x**n, 4)),
+            matrix_of(derivative_forms(3), vectors(x**n, 3)),
             sp.Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 2, 0], [0, 0, 0, 6]]),
         )
 
@@ -29,7 +29,7 @@ class TestMatrixOf(unittest.TestCase):
         x, n = sp.symbols("x n")
 
         self.assertEqual(
-            matrix_of(integral_forms(x**n, 5), vectors(x**n, 5)),
+            matrix_of(integral_forms(x**n, 4), vectors(x**n, 4)),
             hilbert_matrix(5),
         )
 
@@ -38,8 +38,8 @@ class TestMatrixOf(unittest.TestCase):
 
         self.assertEqual(
             matrix_of(
-                integral_forms(sp.legendre(n, x), 3, a=-1, b=1),
-                vectors(sp.legendre(n, x), 3),
+                integral_forms(sp.legendre(n, x), 2, a=-1, b=1),
+                vectors(sp.legendre(n, x), 2),
             ),
             sp.Matrix([[2, 0, 0], [0, sp.S(2) / 3, 0], [0, 0, sp.S(2) / 5]]),
         )

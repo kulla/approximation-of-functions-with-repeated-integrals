@@ -25,11 +25,11 @@ def integral_form(f, a=a, b=b, x=x):
 
 
 def integral_forms(f, n, a=0, b=1, x=x):
-    return [integral_form(f.subs({"n": i}), a, b, x) for i in range(n)]
+    return [integral_form(f.subs({"n": i}), a, b, x) for i in range(n + 1)]
 
 
 def vectors(f, n):
-    return [f.subs({"n": i}) for i in range(n)]
+    return [f.subs({"n": i}) for i in range(n + 1)]
 
 
 def derivative_form(n, x0=0, x=x):
@@ -43,4 +43,4 @@ def derivative_form(n, x0=0, x=x):
 
 
 def derivative_forms(n, x0=0, x=x):
-    return [derivative_form(i, x0, x) for i in range(n)]
+    return [derivative_form(i, x0, x) for i in range(n + 1)]
