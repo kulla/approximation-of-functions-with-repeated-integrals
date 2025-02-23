@@ -1,6 +1,5 @@
 import unittest
 
-import numpy as np
 import sympy as sp
 
 from src.c_space import (
@@ -72,6 +71,23 @@ class TestApproximation(unittest.TestCase):
                 f = approximation(
                     integral_forms(sp.legendre(n, x), n0, a=-1, b=1),
                     vectors(sp.legendre(n, x), n0),
+                    func,
+                )
+                g = nth_legendre_approximation(func, n0)
+                self.assertLessEqual(
+                    supremum_norm(f, g),
+                    1e-10,
+                    "Failed for func = {}, n = {}".format(func, n0),
+                )
+
+    def test_for_moment_measures(self):
+        x, n = sp.symbols("x n")
+
+        for func in [sp.sin(x), sp.exp(x), x**2]:
+            for n0 in [0, 2]:
+                f = approximation(
+                    integral_forms(x**n, n0, a=-1, b=1),
+                    vectors(x**n, n0),
                     func,
                 )
                 g = nth_legendre_approximation(func, n0)
