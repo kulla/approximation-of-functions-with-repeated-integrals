@@ -44,3 +44,10 @@ def derivative_form(n, x0=0, x=x):
 
 def derivative_forms(n, x0=0, x=x):
     return [derivative_form(i, x0, x) for i in range(n + 1)]
+
+
+def nth_legendre_approximation(f, n, x=sp.symbols("x")):
+    polynomials = [sp.legendre(i, x) * sp.sqrt((2 * i + 1) / 2) for i in range(n + 1)]
+    coefficients = [sp.integrate(f * polynomials[i], (x, -1, 1)) for i in range(n + 1)]
+
+    return sum(coef * p for coef, p in zip(coefficients, polynomials))
