@@ -4,6 +4,7 @@ the space of continuous real-valued functions defined on the closed interval [a,
 using SymPy, a Python library for symbolic mathematics.
 """
 
+import numpy as np
 import sympy as sp
 
 from functools import partial
@@ -51,3 +52,21 @@ def nth_legendre_approximation(f, n, x=sp.symbols("x")):
     coefficients = [sp.integrate(f * polynomials[i], (x, -1, 1)) for i in range(n + 1)]
 
     return sum(coef * p for coef, p in zip(coefficients, polynomials))
+
+
+def supremum_norm(f, g, a=-1, b=1, num_points=1000):
+    """
+    Calculate the supremum norm (maximum absolute difference) between two sympy functions f and g
+    over a given interval.
+
+    Parameters:
+    f, g: sympy function expressions
+    interval: tuple, (a, b) the interval over which to calculate the supremum norm
+    num_points: int, number of points to sample between the interval for estimation
+
+    Returns:
+    float: the supremum norm between f and g on the given interval
+    """
+    x_vals = np.linspace(a, b, num_points)
+    diff_vals = np.abs(sp.lambdify("x", f)(x_vals) - sp.lambdify("x", g)(x_vals))
+    return np.max(diff_vals)

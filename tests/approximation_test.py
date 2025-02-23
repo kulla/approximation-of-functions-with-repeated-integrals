@@ -8,6 +8,7 @@ from src.c_space import (
     vectors,
     integral_forms,
     nth_legendre_approximation,
+    supremum_norm,
 )
 from src.approximation import matrix_of, approximation
 
@@ -79,24 +80,6 @@ class TestApproximation(unittest.TestCase):
                     1e-10,
                     "Failed for func = {}, n = {}".format(func, n0),
                 )
-
-
-def supremum_norm(f, g, a=-1, b=1, num_points=1000):
-    """
-    Calculate the supremum norm (maximum absolute difference) between two sympy functions f and g
-    over a given interval.
-
-    Parameters:
-    f, g: sympy function expressions
-    interval: tuple, (a, b) the interval over which to calculate the supremum norm
-    num_points: int, number of points to sample between the interval for estimation
-
-    Returns:
-    float: the supremum norm between f and g on the given interval
-    """
-    x_vals = np.linspace(a, b, num_points)
-    diff_vals = np.abs(sp.lambdify("x", f)(x_vals) - sp.lambdify("x", g)(x_vals))
-    return np.max(diff_vals)
 
 
 if __name__ == "__main__":
